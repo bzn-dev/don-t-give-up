@@ -55,7 +55,6 @@ function menuAdmin() {
             continue;
         }
     }
-
 }
 
 function adicionarQuarto() {
@@ -78,7 +77,17 @@ function adicionarQuarto() {
             continue;
         }
 
-        const id = database.quartosdb.length + 1;
+        var maiorId = 0;
+
+        for (let quarto of database.quartosdb) {
+            if (quarto.id > maiorId) {
+                maiorId = quarto.id;
+            }
+        }
+
+        const proximoId = maiorId + 1;
+
+        const id = proximoId;
         const quarto = { id, tipo, descricao };
         database.quartosdb.push(quarto);
         console.clear();
@@ -94,19 +103,32 @@ function lerQuartos() {
     });
 }
 
-function removerQuarto(opcaoRemover) {
+function removerQuarto() {
+    lerQuartos();
+
     while (true) {
-        opcaoRemover = Number(prompt('Qual quarto você deseja remover? (verificar lista de quartos em console.log)\n\nLembre-se, depois de removido, não tem volta, e o índice começa por 0.\n\n* 109109 para sair.'))
-        if (opcaoRemover === 109109) {
+        lerQuartos();
+        const idRemover = Number(prompt('Qual quarto você deseja remover? (verificar lista de quartos em console.log)\n\nLembre-se, depois de removido, não tem volta, e o índice começa por 0.\n\n* 109109 para sair.'))
+        if (idRemover === 109109) {
             menuAdmin();
             break;
         }
-        else {
-            database.quartosdb.splice(opcaoRemover, 1)
-            alert(`Quarto ${opcaoRemover + 1} removido!`)
+        const id = idRemover;
+        if (!isNaN(id)) {
+            const indexQuarto = database.quartosdb.findIndex(quarto => quarto.id === id);
+            if (indexQuarto >= 0) {
+                database.quartosdb.splice(indexQuarto, 1)
+                alert(`Quarto ${idRemover} removido!`)
+                lerQuartos();
+            }
+            else { alert('Não foi encontrado um quarto com esse ID! ' + id) }
         }
 
+        else {
+            alert('Digita algo direito!')
+            continue;
+        }
     }
-
 }
+
 menuPrincipal()
