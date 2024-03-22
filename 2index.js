@@ -130,4 +130,4 @@ function removerQuarto() {
     }
 }
 
-menuPrincipal()
+menuPrincipal();
