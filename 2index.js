@@ -23,9 +23,8 @@ function menuPrincipal() {
             break;
         }
         else {
-            console.clear();
-            console.log('Seu suicídio não se concluirá aqui, vá embora!');
-            break;
+            alert('Faz alguma coisa direito!');
+            continue;
         }
     }
 }
@@ -33,7 +32,7 @@ function menuPrincipal() {
 function menuAdmin() {
     alert('São uns vermes mesmo, não acha? Pois eu acho!')
     while (true) {
-        var opcaoAdmin = Number(prompt('Vai querer fazer o que?...\n\nEspero que não esqueça dos comandos como da outra vez, ou terá consequências\n\n1 - Adicionar Quarto 🛏️✅\n2 - Remover Quarto 🛏️🚫\n3 - Lista de Quartos 🏨\n4 - Voltar 💻'));
+        var opcaoAdmin = Number(prompt('Vai querer fazer o que...?\n\nEspero que não esqueça dos comandos como da outra vez, ou terá consequências\n\n1 - Adicionar Quarto 🛏️✅\n2 - Remover Quarto 🛏️🚫\n3 - Lista de Quartos 🏨\n4 - Voltar 💻'));
 
         if (opcaoAdmin === 1) {
             adicionarQuarto();
