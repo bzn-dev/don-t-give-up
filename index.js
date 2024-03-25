@@ -1,5 +1,5 @@
-import { Reserva, Quarto } from './3classes.js';
-import { database } from './4objetos.js';
+import { Reserva, Quarto } from './classes.js';
+import { database } from './objetos.js';
 
 function menuPrincipal() {
     while (true) {
