@@ -17,8 +17,8 @@ function criarReserva() {
         var maiorId = 0;
 
         for (let reserva of database.reservasdb) {
-            if (reserva.id > maiorId) {
-                maiorId = reserva.id;
+            if (reserva.idReserva > maiorId) {
+                maiorId = reserva.idReserva;
             }
         }
 
@@ -51,8 +51,8 @@ var checkOut
 var now = new Date()
 
 
-// console.log(checkIn)
-// console.log(dataInputFormat)
+console.log(checkIn)
+console.log(dataInputFormat)
 
 if (checkIn < now) {
     console.log('Data inválida!')
@@ -66,5 +66,6 @@ function addMinutes(date, minutes) {
 }
 
 
-// console.log(now)
+console.log(now)
 
+criarReserva()
