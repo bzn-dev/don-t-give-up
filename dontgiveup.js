@@ -9,12 +9,16 @@ function novaReserva(){
             if(quarto.tipo === 'VIP' && quarto.disponibilidade === 1){
                 console.log(`ID: ${quarto.id}, Descrição: ${quarto.descricao}`)
             }
+
         });
     }
     if(tipoQuarto === 'Comum'){
         database.quartosdb.forEach(quarto => {
             if(quarto.tipo === 'Comum' && quarto.disponibilidade === 1){
                 console.log(`ID: ${quarto.id}, Descrição: ${quarto.descricao}`)
+            }
+            else{
+                console.log('Nenhum quarto Comum disponível.')
             }
         });
     }
