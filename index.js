@@ -85,9 +85,9 @@ function adicionarQuarto() {
         }
 
         const proximoId = maiorId + 1;
-
+        const disponibilidade = 1;
         const id = proximoId;
-        const quarto = { id, tipo, descricao };
+        const quarto = { id, tipo, descricao, disponibilidade };
         database.quartosdb.push(quarto);
         console.clear();
         console.log('Quarto adicionado com sucesso! Quantidade de quartos: ', database.quartosdb.length)
@@ -98,7 +98,15 @@ function lerQuartos() {
     console.clear();
     console.log('Aqui está a lista de quartos:\n\n')
     database.quartosdb.forEach(quarto => {
-        console.log(`ID: ${quarto.id}, Tipo: ${quarto.tipo}, Descrição: ${quarto.descricao}`);
+        if (quarto.disponibilidade === 1) {
+            console.log('Quartos disponíveis:\n')
+            console.log(`ID: ${quarto.id}, Tipo: ${quarto.tipo}, Descrição: ${quarto.descricao} Disponibilidade: ${quarto.disponibilidade}`);
+        }
+        if (quarto.disponibilidade === 0) {
+            console.log('Quartos indisponíveis:\n')
+            console.log(`ID: ${quarto.id}, Tipo: ${quarto.tipo}, Descrição: ${quarto.descricao} Disponibilidade: ${quarto.disponibilidade}`)
+        }
+
     });
 }
 
