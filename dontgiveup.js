@@ -9,7 +9,6 @@ function novaReserva(){
             if(quarto.tipo === 'VIP' && quarto.disponibilidade === 1){
                 console.log(`ID: ${quarto.id}, Descrição: ${quarto.descricao}`)
             }
-
         });
     }
     if(tipoQuarto === 'Comum'){
