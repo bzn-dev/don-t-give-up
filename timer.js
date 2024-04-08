@@ -1,5 +1,26 @@
 import { database } from './objetos.js';
-import { Reserva } from './classes.js';
+
+class Reserva {
+    constructor(quarto, nomeReservante) {
+        this.quarto = quarto;
+        this.nomeReservante = nomeReservante;
+        console.log(`Sua reserva para o quarto ${quarto.id} foi realizada com sucesso. Esta reserva tem 30 segundos de duração.`);
+        this.startTimer();
+    }
+
+    startTimer() {
+        let count = 30;
+        const timer = setInterval(() => {
+            console.log(`Tempo restante: ${count} segundos`);
+            count--;
+            if (count < 0) {
+                clearInterval(timer);
+                this.quarto.disponibilidade = 1;
+                console.log(`A reserva para o quarto ${this.quarto.id} expirou. O quarto agora está disponível.`);
+            }
+        }, 1000);
+    }
+}
 
 // Função para fazer uma nova reserva
 function novaReserva() {
@@ -28,16 +49,13 @@ function novaReserva() {
     const quartoSelecionado = database.quartosdb.find((quarto) => quarto.id === idQuarto && quarto.disponibilidade === 1 && quarto.tipo.toUpperCase() === tipoQuartoCapitalizado);
 
     if (!quartoSelecionado) {
-        console.log(`Quarto selecionado não faz parte da categoria *${tipoQuartoCapitalizado}* ou está indisponível. Voltando à página inicial.`);
+        console.log('Quarto selecionado não está disponível ou não corresponde ao tipo escolhido.');
         return;
     }
 
     // Reservar o quarto
     quartoSelecionado.disponibilidade = 0; // Marcar como indisponível
-    const dataReserva = new Date();
-    const reserva = { idQuarto, nomeReservante, tipoQuarto: tipoQuartoCapitalizado, dataReserva };
-    database.reservasdb.push(reserva);
-    console.log(`Quarto ${idQuarto} reservado com sucesso para ${nomeReservante}.`);
+    new Reserva(quartoSelecionado, nomeReservante);
 }
 
 // Função para listar quartos disponíveis de um tipo específico
@@ -87,10 +105,16 @@ function listarTodosQuartosDisponiveis() {
     });
 }
 
+// Função para iniciar o novo sistema de tempo para as reservas
+function iniciarSistemaDeTempo() {
+    console.log('Sistema de tempo para as reservas iniciado.');
+    // Adicione aqui o código para o novo sistema de tempo
+}
+
 // Menu de reserva
 function menuReserva() {
     while (true) {
-        const opcaoReserva = prompt('O que você deseja fazer?\n1 - Reservar um Quarto 🛌\n2 - Cancelar Reserva 🚫\n3 - Ver quartos disponíveis 🏨\n4 - Voltar 🔙');
+        const opcaoReserva = prompt('O que você deseja fazer?\n1 - Reservar um Quarto 🛌\n2 - Cancelar Reserva 🚫\n3 - Ver quartos disponíveis 🏨\n4 - Iniciar sistema de tempo para as reservas ⏲️\n5 - Voltar 🔙');
 
         switch (opcaoReserva) {
             case '1':
@@ -103,6 +127,9 @@ function menuReserva() {
                 listarTodosQuartosDisponiveis();
                 break;
             case '4':
+                iniciarSistemaDeTempo();
+                break;
+            case '5':
                 return; // Voltar ao menu anterior
 
             default:
