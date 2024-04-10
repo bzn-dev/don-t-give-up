@@ -2,7 +2,6 @@ import { database } from './objetos.js';
 import { Reserva } from './classes.js';
 
 function menuPrincipal() {
-    //while (true) {
     var opcaoMenu = Number(
         prompt(
             'Bem-vindo ao Hotel Suicidio Proibido! 💀 \n\nDigite abaixo o que deseja fazer ou digite sair:\n\n1 - Reservar um quarto 🛌\n2 - Cancelar uma reserva 🚫\n3 - Listar quartos disponíveis 🏨\n4 - Relatar um problema 🚨\n5 - Sair do hotel tranquilamente 😌'
@@ -11,28 +10,23 @@ function menuPrincipal() {
 
     if (opcaoMenu == 1) {
         novaReserva();
-        //break;
     } else if (opcaoMenu == 2) {
         cancelarReserva();
-        //break;
     } else if (opcaoMenu == 3) {
         listarQuartosDisponíveis();
     } else if (opcaoMenu === 4) {
         alert('Vou fingir que você não fez isso');
-        //continue;
+        0;
+        menuPrincipal();
     } else if (opcaoMenu === 5) {
         alert('Você cometeu suicídio, que peninha, estamos horrorizados com tal acontecimento!');
-        //break;
     } else if (opcaoMenu === 109) {
         menuAdmin();
-        //break;
     } else {
         alert('Faz alguma coisa direito!');
         menuPrincipal();
-        //continue;
     }
 }
-//}
 
 function menuAdmin() {
     alert('São uns vermes mesmo, não acha? Pois eu acho!');
@@ -95,11 +89,15 @@ function adicionarQuarto() {
 
 function lerQuartos() {
     console.clear();
-    console.log('Aqui está a lista de quartos disponíveis:\n\n');
+    console.log('Aqui está a lista de quartos existentes:\n\n');
     database.quartosdb.forEach((quarto) => {
+        var descShow = '';
         if (quarto.disponibilidade === 1) {
-            console.log(`ID: ${quarto.id}, Tipo: ${quarto.tipo}, Descrição: ${quarto.descricao} Disponibilidade: Disponível`);
+            descShow = 'Disponível';
+        } else {
+            descShow = 'Indisponível';
         }
+        console.log(`ID: ${quarto.id}, Tipo: ${quarto.tipo}, Descrição: ${quarto.descricao} **${descShow}**`);
     });
 }
 
@@ -167,8 +165,8 @@ function novaReserva() {
 
     if (!quartoSelecionado) {
         alert(`Quarto selecionado não faz parte da categoria *${tipoQuartoFormatado}* ou está indisponível. Voltando à página inicial.`);
-        novaReserva();
-        return;
+        //novaReserva();
+        menuPrincipal();
     }
 
     quartoSelecionado.disponibilidade = 0;
@@ -177,10 +175,7 @@ function novaReserva() {
     database.reservasdb.push(reserva);
     alert(`Quarto ${idQuarto} reservado com sucesso para ${nomeReservante}.`);
 
-    reserva.iniciarTemporizador().then(() => {
-        console.log('Tempo da reserva expirou.');
-        menuPrincipal();
-    });
+    menuPrincipal();
 }
 
 function cancelarReserva() {
