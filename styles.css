@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+#menu-principal {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#menu-principal ul {
+    list-style: none;
+    padding: 0;
+}
+
+#menu-principal ul li {
+    margin-bottom: 10px;
+}
+
+#menu-principal ul li button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#conteudo-dinamico {
+    margin-top: 20px;
+}

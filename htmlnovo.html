@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Suicídio Proibido</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Bem-vindo ao Hotel Suicídio Proibido! 💀</h2>
+    <p>Digite abaixo o que deseja fazer ou digite "sair":</p>
+    <button id="reservar">Reservar um quarto 🛌</button>
+    <button id="cancelar">Cancelar uma reserva 🚫</button>
+    <button id="listar">Listar quartos disponíveis 🏨</button>
+    <button id="relatar">Relatar um problema 🚨</button>
+    <button id="sair">Sair do hotel tranquilamente 😌</button>
+</div>
+
+<script>
+    function menuPrincipal() {
+        var opcaoMenu = Number(prompt(
+            'Digite abaixo o que deseja fazer ou digite "sair":\n\n1 - Reservar um quarto 🛌\n2 - Cancelar uma reserva 🚫\n3 - Listar quartos disponíveis 🏨\n4 - Relatar um problema 🚨\n5 - Sair do hotel tranquilamente 😌'
+        ));
+
+        if (opcaoMenu === 1) {
+            novaReserva();
+        } else if (opcaoMenu === 2) {
+            cancelarReserva();
+        } else if (opcaoMenu === 3) {
+            listarQuartosDisponiveis();
+        } else if (opcaoMenu === 4) {
+            alert('Vou fingir que você não fez isso');
+            menuPrincipal();
+        } else if (opcaoMenu === 5) {
+            alert('Você cometeu suicídio, que peninha, estamos horrorizados com tal acontecimento!');
+        } else {
+            alert('Faz alguma coisa direito!');
+            menuPrincipal();
+        }
+    }
+
+    // Implemente o restante das funções JavaScript aqui...
+
+    document.getElementById('reservar').addEventListener('click', function() {
+        novaReserva();
+    });
+
+    document.getElementById('cancelar').addEventListener('click', function() {
+        cancelarReserva();
+    });
+
+    document.getElementById('listar').addEventListener('click', function() {
+        listarQuartosDisponiveis();
+    });
+
+    document.getElementById('relatar').addEventListener('click', function() {
+        alert('Vou fingir que você não fez isso');
+        menuPrincipal();
+    });
+
+    document.getElementById('sair').addEventListener('click', function() {
+        alert('Você cometeu suicídio, que peninha, estamos horrorizados com tal acontecimento!');
+    });
+
+    menuPrincipal();
+</script>
+</body>
+</html>
